@@ -34,7 +34,6 @@ router.get("/newscontent/:aid/:cid", async (ctx) => {
     ctx.body = ctx.params.aid + ctx.params.cid
 })
 
-
 //错误处理中间件
 app.use(async (ctx, next) => {
     //匹配路由之前打印当前日期
