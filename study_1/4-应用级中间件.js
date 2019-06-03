@@ -3,6 +3,13 @@ var router = require("koa-router")();
 
 var app = new Koa();
 
+app.use(async (ctx, next) => {
+    //匹配路由之前打印当前日期
+    console.log(new Date())
+    await next()
+})
+
+
 router.get("/", async (ctx) => {
     ctx.body = "首页"
 })
@@ -11,11 +18,16 @@ router.get("/news", async (ctx) => {
     ctx.body = "新闻页面"
 })
 
+router.get("/login", async (ctx) => {
+    ctx.body = "登陆页面"
+})
+
+
 //获取get传值
 router.get("/newscontent/:aid/:cid", async (ctx) => {
     //获取动态路由的传值
     console.log(ctx.params)
-    ctx.body = ctx.params.aid
+    ctx.body = ctx.params.aid + ctx.params.cid
 })
 
 
